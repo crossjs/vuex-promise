@@ -1,8 +1,12 @@
-# vuex-promise [![Build Status](https://img.shields.io/circleci/project/crossjs/vuex-promise/master.svg)](https://circleci.com/gh/crossjs/vuex-promise) [![npm package](https://img.shields.io/npm/v/vuex-promise.svg)](https://www.npmjs.com/package/vuex-promise) [![bitHound Overall Score](https://www.bithound.io/github/crossjs/vuex-promise/badges/score.svg)](https://www.bithound.io/github/crossjs/vuex-promise) [![Issue Stats](http://issuestats.com/github/crossjs/vuex-promise/badge/issue?style=flat)](http://issuestats.com/github/crossjs/vuex-promise)
+# vuex-promise
+[![Travis](https://img.shields.io/travis/crossjs/vuex-promise.svg?style=flat-square)](https://github.com/crossjs/vuex-promise)
+[![Coveralls](https://img.shields.io/coveralls/crossjs/vuex-promise.svg?style=flat-square)](https://github.com/crossjs/vuex-promise)
+[![NPM version](https://img.shields.io/npm/v/vuex-promise.svg?style=flat-square)](https://npmjs.org/package/vuex-promise)
+
 
 ### Introduction
 
-...
+A promise middleware for Vuex(-fsa)
 
 ### Development Setup
 
@@ -11,22 +15,13 @@
 npm install
 
 # build dist files
-npm run build
-
-# serve example app at localhost:8080
-# npm run serve-example
-
-# and unit tests at localhost:8081
-# npm run dev
+npm run compile
 
 # lint & run all tests
 npm test
 
 # run unit tests only
 npm run unit
-
-# run e2e tests only
-npm run e2e-local
 ```
 
 ## License

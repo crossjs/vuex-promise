@@ -1,6 +1,6 @@
 {
   "name": "vuex-promise",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A promise middleware for Vuex",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
@@ -68,7 +68,7 @@
     "sinon-chai": "^2.8.0",
     "uglify-js": "^2.5.0",
     "vue": "^1.0.14",
-    "vuex": "^0.6.3",
+    "vuex-fsa": "^0.6.3",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1",
     "yargs": "^4.4.0"

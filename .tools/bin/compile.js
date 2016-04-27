@@ -1,24 +1,14 @@
 require('babel-register')
 
-var webpack = require('webpack')
-
-webpack({
+require('webpack')({
   target: 'web',
   entry: './src/index.js',
   output: {
     path: './dist',
     filename: 'index.js',
-    library: 'ndpromise',
+    library: 'vuexPromise',
     libraryTarget: 'umd'
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        unused: true,
-        dead_code: true
-      }
-    })
-  ],
   module: {
     preLoaders: [{
       test: /\.js$/,

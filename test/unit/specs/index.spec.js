@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex from 'vuex-fsa'
 import vuexPromise from '../../../src'
 
 Vue.use(Vuex)
@@ -28,8 +28,8 @@ describe('Promise', () => {
         message: 'world'
       },
       mutations: {
-        [HELLO] (state, message) {
-          state.message = message
+        [HELLO] (state, { payload }) {
+          state.message = payload
         }
       },
       middlewares: [vuexPromise({
