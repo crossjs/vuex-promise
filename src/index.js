@@ -1,5 +1,5 @@
 export default function vuexPromise ({
-  debug = false
+  debug = false,
   status = {
     PENDING: 0,
     SUCCESS: 1,
