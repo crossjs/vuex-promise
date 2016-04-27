@@ -1,0 +1,24 @@
+{
+  "name": "vuex-promise",
+  "version": "0.0.0",
+  "description": "A promise middleware for Vuex",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crossjs/vuex-promise.git"
+  },
+  "keywords": [
+    "promise",
+    "middleware",
+    "vuex"
+  ],
+  "author": "crossjs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crossjs/vuex-promise/issues"
+  },
+  "homepage": "https://github.com/crossjs/vuex-promise#readme"
+}
