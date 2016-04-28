@@ -15,7 +15,7 @@ A promise middleware for Vuex(-fsa)
 npm install
 
 # build dist files
-npm run compile
+npm run build
 
 # lint & run all tests
 npm test
