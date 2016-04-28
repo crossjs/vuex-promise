@@ -6,7 +6,6 @@
   "jsnext:main": "src/index.js",
   "scripts": {
     "build": "node --harmony .tools/build",
-    "compile": "node --harmony .tools/compile",
     "lint": "eslint --max-warnings 10 .",
     "lint:fix": "npm run lint -- --fix",
     "unit": "node --harmony .tools/unit",
