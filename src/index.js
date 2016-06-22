@@ -6,7 +6,8 @@ export default function vuexPromise ({
     PENDING: 0,
     SUCCESS: 1,
     FAILURE: 2
-  }
+  },
+  silent = false
 } = {}) {
   return {
     onInit () {
@@ -18,7 +19,7 @@ export default function vuexPromise ({
       if (hasPromise(payload)) {
         store.dispatch({
           type,
-          silent: true,
+          silent,
           meta: status.PENDING
         })
         if (!Array.isArray(payload)) {
@@ -28,13 +29,13 @@ export default function vuexPromise ({
         .then(
           res => store.dispatch({
             type,
-            silent: true,
+            silent,
             payload: payload.length === 1 ? res[0] : res,
             meta: status.SUCCESS
           }),
           err => store.dispatch({
             type,
-            silent: true,
+            silent,
             payload: err,
             error: true,
             meta: status.FAILURE
