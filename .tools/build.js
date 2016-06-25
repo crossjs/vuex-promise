@@ -9,7 +9,7 @@ var version = process.env.VERSION || require('../package.json').version
 var banner =
   '/*!\n' +
   ' * Vuex-Promise v' + version + '\n' +
-  ' * (c) ' + new Date().getFullYear() + ' Rich Lee\n' +
+  ' * (c) ' + new Date().getFullYear() + ' crossjs\n' +
   ' * Released under the MIT License.\n' +
   ' */'
 
@@ -19,9 +19,8 @@ rollup.rollup({
 })
 .then(function (bundle) {
   var code = bundle.generate({
-    format: 'umd',
-    banner,
-    moduleName: 'vuexPromise'
+    format: 'cjs',
+    banner
   }).code
   return write('dist/index.js', code).then(function () {
     return code

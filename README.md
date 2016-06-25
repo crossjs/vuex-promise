@@ -1,49 +1,56 @@
-# vuex-promise
-[![Travis](https://img.shields.io/travis/crossjs/vuex-promise.svg?style=flat-square)](https://github.com/crossjs/vuex-promise)
-[![Coveralls](https://img.shields.io/coveralls/crossjs/vuex-promise.svg?style=flat-square)](https://github.com/crossjs/vuex-promise)
-[![NPM version](https://img.shields.io/npm/v/vuex-promise.svg?style=flat-square)](https://npmjs.org/package/vuex-promise)
+# VUEX-PROMISE
 
+> :two_hearts: A Promise Middleware for [Vuex-FSA](https://www.npmjs.com/package/vuex-fsa) (fork of [Vuex](https://github.com/vuejs/vuex), with modifications for FSA compliant)
 
-### Introduction
+[![Travis](https://img.shields.io/travis/crossjs/vuex-promisesvg?style=flat-square)](https://travis-ci.org/crossjs/plato-request)
+[![Coveralls](https://img.shields.io/coveralls/crossjs/vuex-promisesvg?style=flat-square)](https://coveralls.io/github/crossjs/plato-request)
+[![dependencies](https://david-dm.org/crossjs/vuex-promisesvg?style=flat-square)](https://david-dm.org/crossjs/plato-request)
+[![devDependency Status](https://david-dm.org/crossjs/plato-request/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plato-request#info=devDependencies)
+[![NPM version](https://img.shields.io/npm/v/vuex-promisesvg?style=flat-square)](https://npmjs.org/package/plato-request)
 
-A promise middleware for [Vuex-FSA](https://www.npmjs.com/package/vuex-fsa)
+## Usage
 
-`Vuex-FSA` is a fork of [Vuex](https://github.com/vuejs/vuex), with modifications for FSA compliant
+### set middleware in store
+
+``` js
+import createPromise from 'vuex-promise'
+
+export default new Vuex.Store({
+  strict: __DEV__,
+  ...,
+  middlewares: [createPromise({
+    debug: __DEV__,
+    status: {
+      PENDING: 'PROMISE_PENDING',
+      SUCCESS: 'PROMISE_SUCCESS',
+      FAILURE: 'PROMISE_FAILURE'
+    },
+    silent: true
+  })]
+})
+```
+
+### dispatch actions with promisify payloads
 
 ``` js
 import { GET_BEARER, DELETE_BEARER } from '../constants'
-import { POST, DELETE } from 'utils/ajax'
-
-// POST and DELETE based on fetch, return promises
+import request from 'plato-request'
 
 // some vuex actions
 export default {
   getBearer ({ dispatch }, payload) {
-    dispatch(GET_BEARER, POST('/apis/login', {
+    dispatch(GET_BEARER, request('/apis/login', {
+      method: 'POST',
       body: payload
     }))
   },
 
   deleteBearer ({ dispatch }) {
-    dispatch(DELETE_BEARER, DELETE('/apis/user/logout'))
+    dispatch(DELETE_BEARER, request('/apis/user/logout', {
+      method: 'DELETE'
+    }))
   }
 }
-```
-
-### Development Setup
-
-``` bash
-# install deps
-npm install
-
-# build dist files
-npm run build
-
-# lint & run all tests
-npm test
-
-# run unit tests only
-npm run unit
 ```
 
 ## License

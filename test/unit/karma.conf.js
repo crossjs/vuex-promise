@@ -17,9 +17,15 @@ const karmaConfig = {
   singleRun: !argv.watch,
   frameworks: ['mocha'],
   preprocessors: {
-    ['test/unit/index.js']: ['webpack', 'sourcemap']
+    'test/unit/index.js': ['webpack', 'sourcemap']
   },
-  reporters: ['mocha'],
+  reporters: ['mocha', 'coverage'],
+  coverageReporter: {
+    reporters: [
+      { type: 'text-summary' },
+      { type: 'lcov', dir: 'coverage' }
+    ]
+  },
   browsers: ['PhantomJS'],
   webpack: {
     devtool: 'inline-source-map',
@@ -36,23 +42,7 @@ const karmaConfig = {
   },
   webpackMiddleware: {
     noInfo: true
-  },
-  coverageReporter: {
-    reporters: [
-      { type: 'text-summary' },
-      { type: 'lcov', dir: 'coverage' }
-    ]
   }
-}
-
-if (!argv.watch) {
-  karmaConfig.reporters.push('coverage')
-  karmaConfig.webpack.module.preLoaders = [{
-    test: /\.js$/,
-    include: /src/,
-    loader: 'isparta',
-    exclude: /node_modules/
-  }]
 }
 
 export default cfg => cfg.set(karmaConfig)
