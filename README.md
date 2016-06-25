@@ -2,11 +2,11 @@
 
 > :two_hearts: A Promise Middleware for [Vuex-FSA](https://www.npmjs.com/package/vuex-fsa) (fork of [Vuex](https://github.com/vuejs/vuex), with modifications for FSA compliant)
 
-[![Travis](https://img.shields.io/travis/crossjs/vuex-promisesvg?style=flat-square)](https://travis-ci.org/crossjs/plato-request)
-[![Coveralls](https://img.shields.io/coveralls/crossjs/vuex-promisesvg?style=flat-square)](https://coveralls.io/github/crossjs/plato-request)
-[![dependencies](https://david-dm.org/crossjs/vuex-promisesvg?style=flat-square)](https://david-dm.org/crossjs/plato-request)
-[![devDependency Status](https://david-dm.org/crossjs/plato-request/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plato-request#info=devDependencies)
-[![NPM version](https://img.shields.io/npm/v/vuex-promisesvg?style=flat-square)](https://npmjs.org/package/plato-request)
+[![Travis](https://img.shields.io/travis/crossjs/vuex-promise.svg?style=flat-square)](https://travis-ci.org/crossjs/vuex-promise)
+[![Coveralls](https://img.shields.io/coveralls/crossjs/vuex-promise.svg?style=flat-square)](https://coveralls.io/github/crossjs/vuex-promise)
+[![dependencies](https://david-dm.org/crossjs/vuex-promise.svg?style=flat-square)](https://david-dm.org/crossjs/vuex-promise)
+[![devDependency Status](https://david-dm.org/crossjs/vuex-promise/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/vuex-promise#info=devDependencies)
+[![NPM version](https://img.shields.io/npm/v/vuex-promise.svg?style=flat-square)](https://npmjs.org/package/vuex-promise)
 
 ## Usage
 
@@ -34,7 +34,7 @@ export default new Vuex.Store({
 
 ``` js
 import { GET_BEARER, DELETE_BEARER } from '../constants'
-import request from 'plato-request'
+import request from 'vuex-promise'
 
 // some vuex actions
 export default {
