@@ -1,17 +1,19 @@
 import Vue from 'vue'
-import Vuex from 'vuex-fsa'
+import Vuex from 'vuex'
 import vuexPromise from '../../../src'
 
 Vue.use(Vuex)
 
 describe('single payload', () => {
   let el
-  let vm
 
   beforeEach(() => {
     el = document.createElement('div')
-    el.id = 'el'
     document.body.appendChild(el)
+  })
+
+  afterEach(() => {
+    document.body.removeChild(el)
   })
 
   it('with resolve', done => {
@@ -31,16 +33,20 @@ describe('single payload', () => {
         message: 'world'
       },
       mutations: {
-        [HELLO] (state, { payload }) {
-          state.message = payload
+        [HELLO] (state, { payload, meta }) {
+          if (meta === 1) {
+            // success
+            state.message = payload
+          }
         }
       },
-      middlewares: [vuexPromise({
+      plugins: [vuexPromise({
         debug: false
       })]
     })
-    vm = new Vue({
-      el: '#el',
+    const vm = new Vue({
+      el,
+      replace: false,
       template: '<p>hello {{message}}</p>',
       store,
       vuex: {
@@ -49,7 +55,7 @@ describe('single payload', () => {
       },
       watch: {
         message () {
-          expect(vm.message).to.equal('words')
+          expect(this.message).to.equal('words')
           done()
         }
       }
@@ -75,16 +81,19 @@ describe('single payload', () => {
         message: 'world'
       },
       mutations: {
-        [HELLO] (state, { payload }) {
-          state.message = payload
+        [HELLO] (state, { payload, meta }) {
+          if (meta === 2) {
+            state.message = payload
+          }
         }
       },
-      middlewares: [vuexPromise({
+      plugins: [vuexPromise({
         debug: false
       })]
     })
-    vm = new Vue({
-      el: '#el',
+    const vm = new Vue({
+      el,
+      replace: false,
       template: '<p>hello {{message}}</p>',
       store,
       vuex: {
@@ -93,7 +102,7 @@ describe('single payload', () => {
       },
       watch: {
         message () {
-          expect(vm.message).to.equal('wards')
+          expect(this.message).to.equal('wards')
           done()
         }
       }
@@ -101,24 +110,18 @@ describe('single payload', () => {
     expect(vm.message).to.equal('world')
     vm.sendMessage(Promise.reject('wards'))
   })
-
-  afterEach(() => {
-    vm.$destroy()
-  })
-
-  after(() => {
-    document.body.removeChild(el)
-  })
 })
 
 describe('multiple payloads', () => {
   let el
-  let vm
 
   beforeEach(() => {
     el = document.createElement('div')
-    el.id = 'el'
     document.body.appendChild(el)
+  })
+
+  afterEach(() => {
+    document.body.removeChild(el)
   })
 
   it('with resolve', done => {
@@ -144,12 +147,13 @@ describe('multiple payloads', () => {
           }
         }
       },
-      middlewares: [vuexPromise({
+      plugins: [vuexPromise({
         debug: false
       })]
     })
-    vm = new Vue({
-      el: '#el',
+    const vm = new Vue({
+      el,
+      replace: false,
       template: '<p>hello {{message}}</p>',
       store,
       vuex: {
@@ -158,7 +162,7 @@ describe('multiple payloads', () => {
       },
       watch: {
         message () {
-          expect(vm.message).to.equal('words words1 words2')
+          expect(this.message).to.equal('words words1 words2')
           done()
         }
       }
@@ -191,12 +195,13 @@ describe('multiple payloads', () => {
           }
         }
       },
-      middlewares: [vuexPromise({
+      plugins: [vuexPromise({
         debug: false
       })]
     })
-    vm = new Vue({
-      el: '#el',
+    const vm = new Vue({
+      el,
+      replace: false,
       template: '<p>hello {{message}}</p>',
       store,
       vuex: {
@@ -212,9 +217,5 @@ describe('multiple payloads', () => {
     })
     expect(vm.message).to.equal('world')
     vm.sendMessage(Promise.reject('wards'), 'wards1', 'wards2')
-  })
-
-  afterEach(() => {
-    vm.$destroy(true)
   })
 })

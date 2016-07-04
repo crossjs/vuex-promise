@@ -1,6 +1,4 @@
-const hasPromise = payload => payload && (payload.then || (Array.isArray(payload) && payload.some(p => p && p.then)))
-
-export default function vuexPromise ({
+export default function createPromise ({
   debug = false,
   status = {
     PENDING: 0,
@@ -9,22 +7,23 @@ export default function vuexPromise ({
   },
   silent = false
 } = {}) {
-  return {
-    onInit () {
-      if (debug) {
-        console.log('Vuex Promise Initialized.')
-      }
-    },
-    onMutation ({ type, payload }, state, store) {
+  return store => {
+    if (debug) {
+      console.log('[Promise] Vuex Promise Plugin Installed.')
+    }
+
+    store.on('mutation', ({ type, payload }) => {
       if (hasPromise(payload)) {
         store.dispatch({
           type,
           silent,
           meta: status.PENDING
         })
+
         if (!Array.isArray(payload)) {
           payload = [payload]
         }
+
         Promise.all(payload)
         .then(
           res => store.dispatch({
@@ -42,6 +41,10 @@ export default function vuexPromise ({
           })
         )
       }
+    })
+
+    function hasPromise (payload) {
+      return payload && (payload.then || (Array.isArray(payload) && payload.some(p => p && p.then)))
     }
   }
 }
