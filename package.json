@@ -61,7 +61,7 @@
     "rollup-plugin-babel": "^2.4.0",
     "uglify-js": "^2.5.0",
     "vue": "^1.0.26",
-    "vuex": "1.0.0-rc",
+    "vuex": "^1.0.0-rc",
     "webpack": "^1.13.1",
     "yargs": "^4.7.1"
   }
