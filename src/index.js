@@ -12,7 +12,7 @@ export default function createPromise ({
       console.log('[Promise] Vuex Promise Plugin Installed.')
     }
 
-    store.on('mutation', ({ type, payload }) => {
+    store.subscribe(({ type, payload }) => {
       if (hasPromise(payload)) {
         store.dispatch({
           type,

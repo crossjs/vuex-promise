@@ -1,6 +1,6 @@
 {
   "name": "vuex-promise",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": ":two_hearts: A Promise Plugin for Vuex-FSA (fork of Vuex, with modifications for FSA compliant)",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
@@ -61,7 +61,7 @@
     "rollup-plugin-babel": "^2.4.0",
     "uglify-js": "^2.5.0",
     "vue": "^1.0.26",
-    "vuex": "^1.0.0-rc",
+    "vuex": "^1.0.0-rc.2",
     "webpack": "^1.13.1",
     "yargs": "^4.7.1"
   }
