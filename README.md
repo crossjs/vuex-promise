@@ -1,6 +1,6 @@
 # VUEX-PROMISE
 
-> :two_hearts: A Promise Plugin for [Vuex](https://github.com/vuejs/vuex), compatible with 1.0.0-rc
+> :two_hearts: A Promise Plugin for [Vuex](https://github.com/vuejs/vuex), compatible with 1.0.0-rc.2
 
 [![Travis](https://img.shields.io/travis/crossjs/vuex-promise.svg?style=flat-square)](https://travis-ci.org/crossjs/vuex-promise)
 [![Coveralls](https://img.shields.io/coveralls/crossjs/vuex-promise.svg?style=flat-square)](https://coveralls.io/github/crossjs/vuex-promise)
