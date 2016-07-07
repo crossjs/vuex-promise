@@ -11,7 +11,7 @@
     "unit": "karma start ./test/unit/runner.js",
     "unit:dev": "karma start ./test/unit/runner.js --watch",
     "test": "npm run lint && npm run unit",
-    "release": "npm run test && rm -rf dist && mkdir dist && npm run build && npm publish"
+    "release": "bash .tools/release.sh"
   },
   "repository": {
     "type": "git",
@@ -61,7 +61,7 @@
     "rollup-plugin-babel": "^2.4.0",
     "uglify-js": "^2.5.0",
     "vue": "^1.0.26",
-    "vuex": "^1.0.0-rc",
+    "vuex": "1.0.0-rc",
     "webpack": "^1.13.1",
     "yargs": "^4.7.1"
   }
