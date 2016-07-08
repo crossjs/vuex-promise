@@ -30,7 +30,7 @@ export default new Vuex.Store({
 })
 ```
 
-### set module
+### define module with getters and actions
 
 ``` js
 import request from 'plato-request'
@@ -79,30 +79,6 @@ export default {
   state,
   getters,
   actions,
-  mutations
-}
-```
-
-### handle payloads in module mutations
-
-``` js
-import { GET_COMMITS } from '../types'
-import { PROMISE_SUCCESS } from '../constants'
-
-const state = {
-  commits: null
-}
-
-const mutations = {
-  [GET_COMMITS] (state, { payload, meta }) {
-    if (meta === PROMISE_SUCCESS) {
-      state.commits = payload
-    }
-  }
-}
-
-export default {
-  state,
   mutations
 }
 ```
