@@ -1,7 +1,7 @@
 {
   "name": "vuex-promise",
   "version": "1.0.2",
-  "description": ":two_hearts: A Promise Plugin for Vuex-FSA (fork of Vuex, with modifications for FSA compliant)",
+  "description": ":two_hearts: A Promise Plugin for Vuex",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
   "scripts": {
@@ -29,7 +29,6 @@
   },
   "homepage": "https://github.com/crossjs/vuex-promise#readme",
   "devDependencies": {
-    "babel-eslint": "^6.1.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-__coverage__": "^11.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -41,11 +40,8 @@
     "chai": "^3.5.0",
     "cross-spawn": "^4.0.0",
     "eslint": "^3.0.0",
-    "eslint-config-standard": "^5.3.1",
+    "eslint-config-plato": "^0.0.0",
     "eslint-loader": "^1.4.0",
-    "eslint-plugin-babel": "^3.3.0",
-    "eslint-plugin-promise": "^1.3.2",
-    "eslint-plugin-standard": "^1.3.2",
     "karma": "1.0.0",
     "karma-coverage": "^1.0.0",
     "karma-es6-shim": "^1.0.0",
@@ -61,7 +57,7 @@
     "rollup-plugin-babel": "^2.4.0",
     "uglify-js": "^2.5.0",
     "vue": "^1.0.26",
-    "vuex": "^1.0.0-rc.2",
+    "vuex": "^2.0.0-rc.1",
     "webpack": "^1.13.1",
     "yargs": "^4.7.1"
   }

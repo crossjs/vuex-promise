@@ -1,6 +1,6 @@
 # VUEX-PROMISE
 
-> :two_hearts: A Promise Plugin for [Vuex](https://github.com/vuejs/vuex), compatible with 1.0.0-rc.2
+> :two_hearts: A Promise Plugin for [Vuex](https://github.com/vuejs/vuex), compatible with 2.0.0-rc
 
 [![Travis](https://img.shields.io/travis/crossjs/vuex-promise.svg?style=flat-square)](https://travis-ci.org/crossjs/vuex-promise)
 [![Coveralls](https://img.shields.io/coveralls/crossjs/vuex-promise.svg?style=flat-square)](https://coveralls.io/github/crossjs/vuex-promise)
@@ -30,16 +30,30 @@ export default new Vuex.Store({
 })
 ```
 
-### dispatch actions with promisified payloads
+### set module
 
 ``` js
-import { GET_COMMITS } from '../types'
 import request from 'plato-request'
 
-export default {
-  getCommits ({ dispatch }, payload) {
-    dispatch(GET_COMMITS, request({
-      url: '{base}/commits?sha=',
+import {
+  GET_COMMITS
+} from '../types'
+
+import {
+  PROMISE_SUCCESS
+} from '../constants'
+
+const state = {
+  commits: null
+}
+
+const getters = {
+  commits: state => state.commits
+}
+
+const actions = {
+  getCommits ({ commit }, payload) {
+    commit(GET_COMMITS, request('{base}/commits?sha=', {
       params: {
         base: 'https://api.github.com/repos/crossjs/plato'
       },
@@ -51,6 +65,21 @@ export default {
       }
     }))
   }
+}
+
+const mutations = {
+  [GET_COMMITS] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      state.commits = payload
+    }
+  }
+}
+
+export default {
+  state,
+  getters,
+  actions,
+  mutations
 }
 ```
 

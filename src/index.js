@@ -14,7 +14,7 @@ export default function createPromise ({
 
     store.subscribe(({ type, payload }) => {
       if (hasPromise(payload)) {
-        store.dispatch({
+        store.commit({
           type,
           silent,
           meta: status.PENDING
@@ -26,13 +26,13 @@ export default function createPromise ({
 
         Promise.all(payload)
         .then(
-          res => store.dispatch({
+          res => store.commit({
             type,
             silent,
             payload: payload.length === 1 ? res[0] : res,
             meta: status.SUCCESS
           }),
-          err => store.dispatch({
+          err => store.commit({
             type,
             silent,
             payload: err,

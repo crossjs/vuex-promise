@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, { mapGetters, mapActions } from 'vuex'
 import vuexPromise from '../../../src'
 
 Vue.use(Vuex)
@@ -18,19 +18,17 @@ describe('single payload', () => {
 
   it('with resolve', done => {
     const HELLO = 'H-E-L-L-O'
-    const getters = {
-      message ({ message }) {
-        return message
-      }
-    }
-    const actions = {
-      sendMessage ({ dispatch }, payload) {
-        dispatch(HELLO, payload)
-      }
-    }
     const store = new Vuex.Store({
       state: {
         message: 'world'
+      },
+      getters: {
+        message: state => state.message
+      },
+      actions: {
+        sendMessage ({ commit }, payload) {
+          commit(HELLO, payload)
+        }
       },
       mutations: {
         [HELLO] (state, { payload, meta }) {
@@ -49,13 +47,11 @@ describe('single payload', () => {
       replace: false,
       template: '<p>hello {{message}}</p>',
       store,
-      vuex: {
-        getters,
-        actions
-      },
+      computed: mapGetters(['message']),
+      methods: mapActions(['sendMessage']),
       watch: {
-        message () {
-          expect(this.message).to.equal('words')
+        message (val) {
+          expect(val).to.equal('words')
           done()
         }
       }
@@ -66,19 +62,17 @@ describe('single payload', () => {
 
   it('with reject', done => {
     const HELLO = 'H-E-L-L-O'
-    const getters = {
-      message ({ message }) {
-        return message
-      }
-    }
-    const actions = {
-      sendMessage ({ dispatch }, payload) {
-        dispatch(HELLO, payload)
-      }
-    }
     const store = new Vuex.Store({
       state: {
         message: 'world'
+      },
+      getters: {
+        message: state => state.message
+      },
+      actions: {
+        sendMessage ({ commit }, payload) {
+          commit(HELLO, payload)
+        }
       },
       mutations: {
         [HELLO] (state, { payload, meta }) {
@@ -96,13 +90,11 @@ describe('single payload', () => {
       replace: false,
       template: '<p>hello {{message}}</p>',
       store,
-      vuex: {
-        getters,
-        actions
-      },
+      computed: mapGetters(['message']),
+      methods: mapActions(['sendMessage']),
       watch: {
-        message () {
-          expect(this.message).to.equal('wards')
+        message (val) {
+          expect(val).to.equal('wards')
           done()
         }
       }
@@ -112,7 +104,7 @@ describe('single payload', () => {
   })
 })
 
-describe('multiple payloads', () => {
+describe('multiple payloads will ONLY accept first', () => {
   let el
 
   beforeEach(() => {
@@ -126,24 +118,22 @@ describe('multiple payloads', () => {
 
   it('with resolve', done => {
     const HELLO = 'H-E-L-L-O'
-    const getters = {
-      message ({ message }) {
-        return message
-      }
-    }
-    const actions = {
-      sendMessage ({ dispatch }, ...payload) {
-        dispatch(HELLO, ...payload)
-      }
-    }
     const store = new Vuex.Store({
       state: {
         message: 'world'
       },
+      getters: {
+        message: state => state.message
+      },
+      actions: {
+        sendMessage ({ commit }, ...payload) {
+          commit(HELLO, ...payload)
+        }
+      },
       mutations: {
         [HELLO] (state, { payload, meta }) {
           if (meta === 1) {
-            state.message = payload.join(' ')
+            state.message = payload
           }
         }
       },
@@ -156,13 +146,11 @@ describe('multiple payloads', () => {
       replace: false,
       template: '<p>hello {{message}}</p>',
       store,
-      vuex: {
-        getters,
-        actions
-      },
+      computed: mapGetters(['message']),
+      methods: mapActions(['sendMessage']),
       watch: {
-        message () {
-          expect(this.message).to.equal('words words1 words2')
+        message (val) {
+          expect(val).to.equal('words')
           done()
         }
       }
@@ -173,19 +161,17 @@ describe('multiple payloads', () => {
 
   it('with reject', done => {
     const HELLO = 'H-E-L-L-O'
-    const getters = {
-      message ({ message }) {
-        return message
-      }
-    }
-    const actions = {
-      sendMessage ({ dispatch }, payload) {
-        dispatch(HELLO, payload)
-      }
-    }
     const store = new Vuex.Store({
       state: {
         message: 'world'
+      },
+      getters: {
+        message: state => state.message
+      },
+      actions: {
+        sendMessage ({ commit }, payload) {
+          commit(HELLO, payload)
+        }
       },
       mutations: {
         [HELLO] (state, { payload, meta, error }) {
@@ -204,13 +190,11 @@ describe('multiple payloads', () => {
       replace: false,
       template: '<p>hello {{message}}</p>',
       store,
-      vuex: {
-        getters,
-        actions
-      },
+      computed: mapGetters(['message']),
+      methods: mapActions(['sendMessage']),
       watch: {
-        message () {
-          expect(vm.message).to.equal('wards')
+        message (val) {
+          expect(val).to.equal('wards')
           done()
         }
       }
