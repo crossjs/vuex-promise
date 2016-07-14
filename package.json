@@ -38,7 +38,6 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
     "chai": "^3.5.0",
-    "cross-spawn": "^4.0.0",
     "eslint": "^3.0.0",
     "eslint-config-plato": "^0.0.0",
     "eslint-loader": "^1.4.0",
