@@ -8,7 +8,7 @@ var version = process.env.VERSION || require('../package.json').version
 
 var banner =
   '/*!\n' +
-  ' * Vuex-Promise v' + version + '\n' +
+  ' * VUEX-PROMISE v' + version + '\n' +
   ' * (c) ' + new Date().getFullYear() + ' crossjs\n' +
   ' * Released under the MIT License.\n' +
   ' */'
