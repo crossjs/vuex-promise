@@ -1,6 +1,6 @@
 {
   "name": "vuex-promise",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.2",
   "description": ":two_hearts: A Promise Plugin for Vuex",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
