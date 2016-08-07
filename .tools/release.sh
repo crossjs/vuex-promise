@@ -11,10 +11,12 @@ then
   # test
   npm run test
 
-  # build
+  # clean
   rm -rf dist
   mkdir dist
-  npm run build
+
+  # build
+  VERSION=$VERSION npm run build
 
   # commit
   git add -A

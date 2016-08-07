@@ -32,7 +32,7 @@ describe('single payload', () => {
       },
       mutations: {
         [HELLO] (state, { payload, meta }) {
-          if (meta === 1) {
+          if (meta && meta.promise === 1) {
             // success
             state.message = payload
           }
@@ -76,7 +76,7 @@ describe('single payload', () => {
       },
       mutations: {
         [HELLO] (state, { payload, meta }) {
-          if (meta === 2) {
+          if (meta && meta.promise === 2) {
             state.message = payload
           }
         }
@@ -132,7 +132,7 @@ describe('multiple payloads will ONLY accept first', () => {
       },
       mutations: {
         [HELLO] (state, { payload, meta }) {
-          if (meta === 1) {
+          if (meta && meta.promise === 1) {
             state.message = payload
           }
         }
@@ -176,7 +176,7 @@ describe('multiple payloads will ONLY accept first', () => {
       mutations: {
         [HELLO] (state, { payload, meta, error }) {
           if (error) {
-            expect(meta).to.equal(2)
+            expect(meta.promise).to.equal(2)
             state.message = payload
           }
         }

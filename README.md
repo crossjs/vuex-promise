@@ -8,6 +8,11 @@
 [![devDependency Status](https://david-dm.org/crossjs/vuex-promise/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/vuex-promise#info=devDependencies)
 [![NPM version](https://img.shields.io/npm/v/vuex-promise.svg?style=flat-square)](https://npmjs.org/package/vuex-promise)
 
+## Change Log
+
+- 20160807 :warning: *Breaking Changes*
+  - modify meta structure
+
 ## Usage
 
 ### set plugin in store
@@ -23,7 +28,8 @@ export default new Vuex.Store({
     status: {
       PENDING: 'PROMISE_PENDING',
       SUCCESS: 'PROMISE_SUCCESS',
-      FAILURE: 'PROMISE_FAILURE'
+      FAILURE: 'PROMISE_FAILURE',
+      FINALLY: 'PROMISE_FINALLY'
     },
     silent: false
   })]

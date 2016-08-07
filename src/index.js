@@ -3,7 +3,8 @@ export default function createPromise ({
   status = {
     PENDING: 0,
     SUCCESS: 1,
-    FAILURE: 2
+    FAILURE: 2,
+    FINALLY: 4
   },
   silent = false
 } = {}) {
@@ -12,12 +13,15 @@ export default function createPromise ({
       console.log('[Promise] Vuex Promise Plugin Installed.')
     }
 
-    store.subscribe(({ type, payload }) => {
+    store.subscribe(({ type, payload, meta }) => {
       if (hasPromise(payload)) {
         store.commit({
           type,
           silent,
-          meta: status.PENDING
+          meta: {
+            ...meta,
+            promise: status.PENDING
+          }
         })
 
         if (!Array.isArray(payload)) {
@@ -26,19 +30,45 @@ export default function createPromise ({
 
         Promise.all(payload)
         .then(
-          res => store.commit({
-            type,
-            silent,
-            payload: payload.length === 1 ? res[0] : res,
-            meta: status.SUCCESS
-          }),
-          err => store.commit({
-            type,
-            silent,
-            payload: err,
-            error: true,
-            meta: status.FAILURE
-          })
+          function (res) {
+            store.commit({
+              type,
+              silent,
+              payload: payload.length === 1 ? res[0] : res,
+              meta: {
+                ...meta,
+                promise: status.SUCCESS
+              }
+            })
+            // finally
+            store.commit({
+              type,
+              meta: {
+                ...meta,
+                promise: status.FINALLY
+              }
+            })
+          },
+          function (err) {
+            store.commit({
+              type,
+              silent,
+              payload: err,
+              error: true,
+              meta: {
+                ...meta,
+                promise: status.FAILURE
+              }
+            })
+            // finally
+            store.commit({
+              type,
+              meta: {
+                ...meta,
+                promise: status.FINALLY
+              }
+            })
+          }
         )
       }
     })
