@@ -75,7 +75,7 @@ const actions = {
 
 const mutations = {
   [GET_COMMITS] (state, { payload, meta }) {
-    if (meta === PROMISE_SUCCESS) {
+    if (meta && meta.promise === PROMISE_SUCCESS) {
       state.commits = payload
     }
   }
